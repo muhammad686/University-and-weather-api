@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search universities by country</title>
+  </head>
+  <body>
+    <h1>Search Universities by Country</h1>
+
+    <form action="/submit" method="POST">
+      <input type="text" name="countryName" placeholder="Country Name" />
+      <input type="submit" value="OK" />
+    </form>
+
+    <% if (locals.error) { %>
+    <p style="color: red"><%= error %></p>
+    <% } else if (data.length > 0) { %>
+    <p>
+      Total numer of universities found in
+      <span style="font-weight: bold; font-size: 1em"><%= countryName %> </span>
+      is: <%= data.length %>
+    </p>
+    <ul>
+      <% for (const university of data) { %>
+      <li><%= university.name %> (<%= university.domains.length %>)</li>
+      <% } %>
+    </ul>
+    <% } else { %>
+    <p>No universities found for the given country.</p>
+    <% } %>
+  </body>
+</html>

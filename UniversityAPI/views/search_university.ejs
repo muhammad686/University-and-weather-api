@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search university</title>
+  </head>
+  <body>
+    <h1>Search University</h1>
+    <form action="/submit" method="POST">
+      <input type="text" name="UniName" placeholder="University Name" />
+      <input type="submit" value="OK" />
+    </form>
+
+    <% if (data) { %>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>URL</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for (const university of data) { %>
+        <tr>
+          <td><%= university.name %></td>
+          <td style="padding-left: 15px">
+            <a href="<%= university.web_pages[0] %>"><%= university.name %></a>
+          </td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+    <% } else if (error) { %>
+    <p><%= error %></p>
+    <% } else { %>
+    <p>No universities found.</p>
+    <% } %>
+  </body>
+</html>
